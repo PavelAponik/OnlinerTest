@@ -18,7 +18,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -31,7 +31,7 @@
     </build>
 
     <groupId>org.pavelaponik</groupId>
-    <artifactId>org.pavelaponik.OnlinerTest</artifactId>
+    <artifactId>org.OnlinerTest</artifactId>
     <version>1.0</version>
 
     <dependencies>
