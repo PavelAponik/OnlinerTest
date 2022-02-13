@@ -9,7 +9,7 @@
         <parameter name="ScreenDiagonalMin" value='40"'/>
         <parameter name="ScreenDiagonalMax" value='50"'/>
         <classes>
-            <class name="org.pavelaponik.OnlinerTest">
+            <class name="Test.OnlinerTest">
                 <methods>
                     <include name="TestOnliner"/>
                 </methods>
