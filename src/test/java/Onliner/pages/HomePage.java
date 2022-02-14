@@ -1,4 +1,4 @@
-package Onliner;
+package Onliner.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,14 +9,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import Framework.Browser;
 
-public class MainPage {
+public class HomePage {
     private final WebDriver driver = Browser.driver;
     private final String category = "//h2//a[contains(text(), '%s')]";
     private JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Browser.driver;
     private WebDriverWait wait = new WebDriverWait(Browser.driver, 10);
     Actions actionProvider = new Actions(driver);
 
-    public MainPage(WebDriver driver){
+    public HomePage(WebDriver driver){
         Browser.driver = driver;
     }
 

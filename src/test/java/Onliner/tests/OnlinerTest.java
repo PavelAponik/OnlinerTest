@@ -1,23 +1,23 @@
-package Test;
+package Onliner.tests;
 
 import Framework.Browser;
 import Framework.ConfigProperties;
-import Onliner.MenuNavigation;
-import Onliner.CatalogPage;
-import Onliner.MainPage;
-import Onliner.SearchResultPage;
+import Onliner.pages.TVPage;
+import Onliner.pages.CataloguePage;
+import Onliner.pages.HomePage;
+import Onliner.pages.TVResultsPage;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import static Framework.Browser.driver;
 
 public class OnlinerTest {
-    static MainPage mainPage;
-    static CatalogPage catalogPage;
-    static MenuNavigation menu;
+    static HomePage homePage;
+    static CataloguePage cataloguePage;
+    static TVPage tvPage;
     static SoftAssert softAssert;
     static ConfigProperties configProperties;
-    static SearchResultPage searchResult;
+    static TVResultsPage searchResult;
 
     @BeforeTest
     public void setUp(){
@@ -25,32 +25,32 @@ public class OnlinerTest {
     }
 
     @Test
-    @Parameters ({"Directory", "Brand", "MaxPrice", "ScreenResolution", "ScreenDiagonalMin", "ScreenDiagonalMax"})
-    public void TestOnliner(String Directory, String Brand, String MaxPrice,
+    @Parameters ({"Brand", "MaxPrice", "ScreenResolution", "ScreenDiagonalMin", "ScreenDiagonalMax"})
+    public void TestOnliner(String Brand, String MaxPrice,
                             String ScreenResolution, String ScreenDiagonalMin, String ScreenDiagonalMax){
         softAssert = new SoftAssert();
         softAssert.assertEquals(driver.getTitle(), "Onliner");
 
         configProperties = new ConfigProperties();
-        mainPage = new MainPage(driver);
-        mainPage.navigateTo(Directory);
+        homePage = new HomePage(driver);
+        homePage.navigateTo("Каталог");
 
-        catalogPage = new CatalogPage(driver);
-        catalogPage.selectCatMenu("Электроника");
-        catalogPage.selectCatSubMenu("Телевидение");
-        catalogPage.selectDropDownItem("Телевизоры");
+        cataloguePage = new CataloguePage(driver);
+        cataloguePage.selectCatMenu("Электроника");
+        cataloguePage.selectCatSubMenu("Телевидение");
+        cataloguePage.selectDropDownItem("Телевизоры");
         softAssert.assertEquals(driver.getTitle(),"Телевизор купить в Минске");
 
-        menu = new MenuNavigation(driver);
-        menu.selectCheckbox(Brand);
-        menu.setMaxPrice(MaxPrice);
-        menu.selectCheckbox(ScreenDiagonalMin);
-        menu.selectCheckbox(ScreenDiagonalMax);
-        menu.selectCheckbox(ScreenResolution);
-        menu.waitTillResults();
+        tvPage = new TVPage(driver);
+        tvPage.selectCheckbox(Brand);
+        tvPage.setMaxPrice(MaxPrice);
+        tvPage.selectCheckbox(ScreenDiagonalMin);
+        tvPage.selectCheckbox(ScreenDiagonalMax);
+        tvPage.selectCheckbox(ScreenResolution);
+        tvPage.waitTillResults();
         softAssert.assertEquals(driver.getTitle(),"Товары в каталоге Onlíner");
 
-        searchResult = new SearchResultPage(driver);
+        searchResult = new TVResultsPage(driver);
         searchResult.checkSearchList(searchResult.titleResult, Brand);
         searchResult.checkSearchList(searchResult.descriptionResult, ScreenResolution);
         searchResult.checkDiagonal(searchResult.descriptionResult, ScreenDiagonalMin, ScreenDiagonalMax);

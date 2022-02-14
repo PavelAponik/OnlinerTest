@@ -1,4 +1,4 @@
-package Onliner;
+package Onliner.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,14 +9,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import Framework.Browser;
 
 
-public class CatalogPage {
+public class CataloguePage {
     private final WebDriver driver = Browser.driver;
     private WebDriverWait wait = new WebDriverWait(Browser.driver, 10);
     private final String catalogMenu = "//span[text()='%s']";
     private final String catalogSubMenu = "//div[contains(@class, 'catalog-navigation-list__aside-title') and contains(text(), '%s')]";
     private final String catalogDropDown = "//span[contains(@class, 'catalog-navigation-list__dropdown-title') and contains(text(), '%s')]";
 
-    public CatalogPage(WebDriver driver){
+    public CataloguePage(WebDriver driver){
         Browser.driver = driver;
     }
 
