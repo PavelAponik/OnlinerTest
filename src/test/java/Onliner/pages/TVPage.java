@@ -1,4 +1,4 @@
-package Onliner;
+package Onliner.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import Framework.Browser;
 
-public class MenuNavigation {
+public class TVPage {
 
     private final WebDriver driver = Browser.driver;
     private WebDriverWait wait = new WebDriverWait(Browser.driver, 10);
@@ -20,7 +20,7 @@ public class MenuNavigation {
     private final String  productTitle = "//div[@class='schema-product__title']";
 
 
-    public MenuNavigation(WebDriver driver){
+    public TVPage(WebDriver driver){
         Browser.driver = driver;
     }
 

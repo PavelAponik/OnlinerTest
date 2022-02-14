@@ -1,4 +1,4 @@
-package Onliner;
+package Onliner.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,10 +8,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class SearchResultPage {
+public class TVResultsPage {
     static WebDriver driver = Browser.driver;
 
-    public SearchResultPage(WebDriver driver){
+    public TVResultsPage(WebDriver driver){
         Browser.driver = driver;
     }
 
@@ -24,7 +24,6 @@ public class SearchResultPage {
 
         for (int i = 0; i < searchList.size(); i++){
             softAssert.assertTrue(searchList.get(i).getText().contains(string));
-            softAssert.assertAll();
         }
     }
 
@@ -36,8 +35,7 @@ public class SearchResultPage {
             if (diag < Integer.parseInt(DiagonalMax.substring(0, DiagonalMax.length()-1)) | diag > Integer.parseInt(DiagonalMin.substring(0, DiagonalMin.length()-1))){
                 softAssert.assertTrue(true, "Correct Screen Diagonal");
             }
-            softAssert.assertAll();
-        }
+                    }
     }
 
     public void checkPrice(List<WebElement> searchList, String Price){
@@ -45,7 +43,7 @@ public class SearchResultPage {
 
         for (int i = 0; i < searchList.size(); i++){
             softAssert.assertTrue(Double.parseDouble(searchList.get(i).getText().replace(" р.", "").replace(',', '.')) <= Double.parseDouble(Price));
-            softAssert.assertAll();
+
         }
     }
 }
