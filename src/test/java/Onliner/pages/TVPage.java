@@ -7,16 +7,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import Framework.Browser;
+import framework.Browser;
 
-public class TVPage {
+public class TVPage extends BasePage {
 
     private final WebDriver driver = Browser.driver;
     private WebDriverWait wait = new WebDriverWait(Browser.driver, 10);
     private JavascriptExecutor javascriptExecutor = (JavascriptExecutor) Browser.driver;
 
     private final String checkboxLocator = "//li/label[@class='schema-filter__checkbox-item']/span[text()='%s']";
-    private final String maxPriceLocator = "//input[@class='schema-filter-control__item schema-filter__number-input schema-filter__number-input_price'][@placeholder='до']";
+    private final String maxPriceLocator = "//input[contains(@class, 'schema-filter-control__item schema-filter__number-input schema-filter__number-input_price')][@placeholder='до']";
     private final String  productTitle = "//div[@class='schema-product__title']";
 
 

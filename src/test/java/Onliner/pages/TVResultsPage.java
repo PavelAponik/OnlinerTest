@@ -3,12 +3,12 @@ package Onliner.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import Framework.Browser;
+import framework.Browser;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class TVResultsPage {
+public class TVResultsPage extends BasePage {
     static WebDriver driver = Browser.driver;
 
     public TVResultsPage(WebDriver driver){
