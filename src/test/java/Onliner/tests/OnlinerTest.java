@@ -1,67 +1,54 @@
 package Onliner.tests;
 
-import framework.Browser;
+import Onliner.base.BaseTest;
 import framework.ConfigProperties;
 import Onliner.pages.TVPage;
 import Onliner.pages.CataloguePage;
 import Onliner.pages.HomePage;
 import Onliner.pages.TVResultsPage;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 
-public class OnlinerTest {
+public class OnlinerTest extends BaseTest{
     static HomePage homePage;
     static CataloguePage cataloguePage;
     static TVPage tvPage;
     static SoftAssert softAssert;
     static ConfigProperties configProperties;
     static TVResultsPage searchResult;
-    private Browser browser;
-
-    @BeforeTest
-    public void setUp() {
-        browser = new Browser(new ChromeDriver(), ConfigProperties.getProperty("browserName"));
-    }
 
     @Test
     @Parameters({"Brand", "MaxPrice", "ScreenResolution", "ScreenDiagonalMin", "ScreenDiagonalMax"})
     public void TestOnliner(String Brand, String MaxPrice,
-                            String ScreenResolution, String ScreenDiagonalMin, String ScreenDiagonalMax) {
+                                               String ScreenResolution, String ScreenDiagonalMin, String ScreenDiagonalMax) {
         softAssert = new SoftAssert();
-        softAssert.assertEquals(browser.getDriver().getTitle(), "Onliner");
+        softAssert.assertEquals(driver.getTitle(), "Onliner");
 
         configProperties = new ConfigProperties();
-        homePage = new HomePage(browser);
-        homePage.navigateTo(String.format(HomePage.category,"Каталог"));
+        homePage = new HomePage(driver);
+        homePage.clickOnElement(String.format(HomePage.category, "Каталог"));
 
-        cataloguePage = new CataloguePage(browser.getDriver());
-        cataloguePage.selectCatMenu("Электроника");
-        cataloguePage.selectCatSubMenu("Телевидение");
-        cataloguePage.selectDropDownItem("Телевизоры");
-        softAssert.assertEquals(browser.getDriver().getTitle(), "Телевизор купить в Минске");
+        cataloguePage = new CataloguePage(driver);
+        cataloguePage.clickOnElement(String.format(CataloguePage.catalogMenu, "Электроника"));
+        cataloguePage.navigateTo(String.format(CataloguePage.catalogSubMenu, "Телевидение"));
+        cataloguePage.clickOnElement(String.format(CataloguePage.catalogDropDown, "Телевизоры"));
+        softAssert.assertEquals(driver.getTitle(), "Телевизор купить в Минске");
 
-        tvPage = new TVPage(browser.getDriver());
-        tvPage.selectCheckbox(Brand);
-        tvPage.setMaxPrice(MaxPrice);
-        tvPage.selectCheckbox(ScreenDiagonalMin);
-        tvPage.selectCheckbox(ScreenDiagonalMax);
-        tvPage.selectCheckbox(ScreenResolution);
-        tvPage.waitTillResults();
-        softAssert.assertEquals(browser.getDriver().getTitle(), "Товары в каталоге Onlíner");
+        tvPage = new TVPage(driver);
+        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, Brand));
+        tvPage.setValue(TVPage.maxPriceLocator, MaxPrice);
+        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, ScreenDiagonalMin));
+        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, ScreenDiagonalMax));
+        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, ScreenResolution));
+        tvPage.waitTillResults(String.format(TVPage.productTitle));
+        softAssert.assertEquals(driver.getTitle(), "Товары в каталоге Onlíner");
 
-        searchResult = new TVResultsPage(browser.getDriver());
+        searchResult = new TVResultsPage(driver);
         searchResult.checkSearchList(searchResult.titleResult, Brand);
         searchResult.checkSearchList(searchResult.descriptionResult, ScreenResolution);
         searchResult.checkDiagonal(searchResult.descriptionResult, ScreenDiagonalMin, ScreenDiagonalMax);
         searchResult.checkPrice(searchResult.priceResult, MaxPrice);
         softAssert.assertAll();
     }
-
-    @AfterTest
-    public void tearDown() {
-        Browser.browserQuit();
-    }
-
 }

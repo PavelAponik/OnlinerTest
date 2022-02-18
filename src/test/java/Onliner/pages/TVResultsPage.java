@@ -1,18 +1,17 @@
 package Onliner.pages;
 
+import Onliner.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import framework.Browser;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class TVResultsPage extends BasePage {
-    static WebDriver driver = Browser.driver;
 
     public TVResultsPage(WebDriver driver){
-        Browser.driver = driver;
+        super(driver);
     }
 
     public List<WebElement> titleResult = driver.findElements(By.xpath("//div[@class='schema-product__title']"));
@@ -35,7 +34,7 @@ public class TVResultsPage extends BasePage {
             if (diag < Integer.parseInt(DiagonalMax.substring(0, DiagonalMax.length()-1)) | diag > Integer.parseInt(DiagonalMin.substring(0, DiagonalMin.length()-1))){
                 softAssert.assertTrue(true, "Correct Screen Diagonal");
             }
-                    }
+        }
     }
 
     public void checkPrice(List<WebElement> searchList, String Price){
@@ -43,7 +42,6 @@ public class TVResultsPage extends BasePage {
 
         for (int i = 0; i < searchList.size(); i++){
             softAssert.assertTrue(Double.parseDouble(searchList.get(i).getText().replace(" р.", "").replace(',', '.')) <= Double.parseDouble(Price));
-
         }
     }
 }
