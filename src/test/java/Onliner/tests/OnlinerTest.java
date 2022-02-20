@@ -32,7 +32,7 @@ public class OnlinerTest extends BaseTest{
         cataloguePage = new CataloguePage(driver);
         cataloguePage.clickOnElement(String.format(CataloguePage.catalogMenu, "Электроника"));
         cataloguePage.navigateTo(String.format(CataloguePage.catalogSubMenu, "Телевидение"));
-        cataloguePage.clickOnElement(String.format(CataloguePage.catalogDropDown, "Телевизоры"));
+        cataloguePage.navigateToDropDownItem(String.format(CataloguePage.catalogDropDown, "Телевизоры"));
         softAssert.assertEquals(driver.getTitle(), "Телевизор купить в Минске");
 
         tvPage = new TVPage(driver);

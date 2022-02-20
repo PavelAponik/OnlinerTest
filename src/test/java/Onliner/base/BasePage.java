@@ -1,10 +1,8 @@
 package Onliner.base;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.checkerframework.checker.units.qual.A;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,22 +19,30 @@ public class BasePage {
 
     public WebElement waitUntilElementAvailable(final String locator) {
         wait = new WebDriverWait(driver, 10);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
         return element;
     }
 
     public WebElement scrollToElement(final String locator) {
         WebElement element = driver.findElement(By.xpath(locator));
-        javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
+        javascriptExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
         return element;
     }
 
     public WebElement navigateTo(final String locator) {
         WebElement element = waitUntilElementAvailable(locator);
         Actions actions = new Actions(driver);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
         scrollToElement(locator);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
         actions.moveToElement(element).build().perform();
+        return element;
+    }
+
+    public WebElement navigateToDropDownItem(final String locator){
+        WebElement element = waitUntilElementAvailable(locator);
+        Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+        actions.moveToElement(element).click().build().perform();
         return element;
     }
 
@@ -58,4 +64,5 @@ public class BasePage {
         javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
         element.sendKeys(value);
     }
+
 }
