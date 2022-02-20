@@ -1,6 +1,6 @@
 package Onliner.pages;
 
-import Onliner.base.BasePage;
+import framework.base.BasePage;
 import org.openqa.selenium.WebDriver;
 
 
