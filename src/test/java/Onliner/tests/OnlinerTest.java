@@ -1,6 +1,6 @@
 package Onliner.tests;
 
-import Onliner.base.BaseTest;
+import framework.base.BaseTest;
 import framework.ConfigProperties;
 import Onliner.pages.TVPage;
 import Onliner.pages.CataloguePage;

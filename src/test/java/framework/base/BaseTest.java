@@ -1,4 +1,4 @@
-package Onliner.base;
+package framework.base;
 
 
 import framework.ConfigProperties;
