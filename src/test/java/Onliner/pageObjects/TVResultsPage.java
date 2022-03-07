@@ -1,4 +1,4 @@
-package Onliner.pages;
+package Onliner.pageObjects;
 
 import framework.base.BasePage;
 import org.openqa.selenium.By;

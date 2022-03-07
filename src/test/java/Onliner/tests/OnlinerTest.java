@@ -2,10 +2,10 @@ package Onliner.tests;
 
 import framework.base.BaseTest;
 import framework.ConfigProperties;
-import Onliner.pages.TVPage;
-import Onliner.pages.CataloguePage;
-import Onliner.pages.HomePage;
-import Onliner.pages.TVResultsPage;
+import Onliner.pageObjects.TVPage;
+import Onliner.pageObjects.CataloguePage;
+import Onliner.pageObjects.HomePage;
+import Onliner.pageObjects.TVResultsPage;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
