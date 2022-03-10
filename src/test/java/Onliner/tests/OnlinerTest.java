@@ -1,7 +1,7 @@
 package Onliner.tests;
 
 import framework.base.BaseTest;
-import framework.ConfigProperties;
+import framework.PropertiesManager;
 import Onliner.pageObjects.TVPage;
 import Onliner.pageObjects.CataloguePage;
 import Onliner.pageObjects.HomePage;
@@ -15,7 +15,7 @@ public class OnlinerTest extends BaseTest{
     static CataloguePage cataloguePage;
     static TVPage tvPage;
     static SoftAssert softAssert;
-    static ConfigProperties configProperties;
+    static PropertiesManager propertiesManager;
     static TVResultsPage searchResult;
 
     @Test
@@ -25,7 +25,7 @@ public class OnlinerTest extends BaseTest{
         softAssert = new SoftAssert();
         softAssert.assertEquals(driver.getTitle(), "Onliner");
 
-        configProperties = new ConfigProperties();
+        propertiesManager = new PropertiesManager();
         homePage = new HomePage(driver);
         homePage.clickOnElement(String.format(HomePage.category, "Каталог"));
 

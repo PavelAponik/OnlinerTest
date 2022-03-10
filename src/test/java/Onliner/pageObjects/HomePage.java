@@ -1,6 +1,8 @@
 package Onliner.pageObjects;
 
 import framework.base.BasePage;
+import framework.elements.Button;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
@@ -10,4 +12,9 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    public void navigateToCategory(String category){
+        Button btnCategory = new Button(By.xpath(category));
+        btnCategory.clickAndWait();
+
+    }
 }
