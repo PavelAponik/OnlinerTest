@@ -1,19 +1,21 @@
 package framework.base;
 
 
+import framework.elements.Label;
+import framework.webdriver.Browser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-    public WebDriver driver;
+    public WebDriver driver = Browser.driver;
     public WebDriverWait wait;
     public JavascriptExecutor javascriptExecutor;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        this.javascriptExecutor = (JavascriptExecutor) driver;
+    public BasePage(By locator, String pageTitle) {
+        String title = pageTitle;
+        Label lblPage = new Label(locator, pageTitle);
     }
 
     public WebElement waitUntilElementAvailable(final String locator) {

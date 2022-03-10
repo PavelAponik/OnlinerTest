@@ -10,8 +10,8 @@ import java.util.List;
 
 public class TVResultsPage extends BasePage {
 
-    public TVResultsPage(WebDriver driver){
-        super(driver);
+    public TVResultsPage(){
+        super(By.xpath("//div[contains(@class, 'b-top-logo')]"), "TV Results Page");
     }
 
     public List<WebElement> titleResult = driver.findElements(By.xpath("//div[@class='schema-product__title']"));

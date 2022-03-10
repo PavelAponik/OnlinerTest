@@ -26,25 +26,25 @@ public class OnlinerTest extends BaseTest{
         softAssert.assertEquals(driver.getTitle(), "Onliner");
 
         propertiesManager = new PropertiesManager();
-        homePage = new HomePage(driver);
-        homePage.clickOnElement(String.format(HomePage.category, "Каталог"));
+        homePage = new HomePage();
+        homePage.clickOnElement(String.format(HomePage.CATEGORY, "Каталог"));
 
-        cataloguePage = new CataloguePage(driver);
-        cataloguePage.clickOnElement(String.format(CataloguePage.catalogMenu, "Электроника"));
-        cataloguePage.navigateTo(String.format(CataloguePage.catalogSubMenu, "Телевидение"));
-        cataloguePage.navigateToDropDownItem(String.format(CataloguePage.catalogDropDown, "Телевизоры"));
+        cataloguePage = new CataloguePage();
+        cataloguePage.clickOnElement(String.format(CataloguePage.CATALOGUE_MENU, "Электроника"));
+        cataloguePage.navigateTo(String.format(CataloguePage.CATALOGUE_SUB_MENU, "Телевидение"));
+        cataloguePage.navigateToDropDownItem(String.format(CataloguePage.CATALOGUE_DROP_DOWN, "Телевизоры"));
         softAssert.assertEquals(driver.getTitle(), "Телевизор купить в Минске");
 
-        tvPage = new TVPage(driver);
-        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, Brand));
-        tvPage.setValue(TVPage.maxPriceLocator, MaxPrice);
-        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, ScreenDiagonalMin));
-        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, ScreenDiagonalMax));
-        tvPage.clickOnElement(String.format(TVPage.checkboxLocator, ScreenResolution));
-        tvPage.waitTillResults(String.format(TVPage.productTitle));
+        tvPage = new TVPage();
+        tvPage.clickOnElement(String.format(TVPage.CHECKBOX_LOCATOR, Brand));
+        tvPage.setValue(TVPage.MAX_PRICE_LOCATOR, MaxPrice);
+        tvPage.clickOnElement(String.format(TVPage.CHECKBOX_LOCATOR, ScreenDiagonalMin));
+        tvPage.clickOnElement(String.format(TVPage.CHECKBOX_LOCATOR, ScreenDiagonalMax));
+        tvPage.clickOnElement(String.format(TVPage.CHECKBOX_LOCATOR, ScreenResolution));
+        tvPage.waitTillResults(String.format(TVPage.PRODUCT_TITLE));
         softAssert.assertEquals(driver.getTitle(), "Товары в каталоге Onlíner");
 
-        searchResult = new TVResultsPage(driver);
+        searchResult = new TVResultsPage();
         searchResult.checkSearchList(searchResult.titleResult, Brand);
         searchResult.checkSearchList(searchResult.descriptionResult, ScreenResolution);
         searchResult.checkDiagonal(searchResult.descriptionResult, ScreenDiagonalMin, ScreenDiagonalMax);

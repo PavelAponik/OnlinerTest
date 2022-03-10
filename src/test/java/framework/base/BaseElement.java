@@ -18,14 +18,16 @@ public class BaseElement {
 
     WebDriver driver = Browser.driver;
     WebElement element;
-    By locator;
+    protected By locator;
+    protected String name;
     WebDriverWait wait = new WebDriverWait(driver, 10);
     List<WebElement> elementList;
     PropertiesManager propertiesManager = new PropertiesManager();
     JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 
-    public BaseElement(By locator){
-        this.locator = locator;
+    public BaseElement(final By elementLocator, final String elementName){
+        locator = elementLocator;
+        name = elementName;
     }
 
     public WebElement getElement(){
@@ -78,6 +80,11 @@ public class BaseElement {
     public void clickAndWait(){
         click();
         waitForPageToLoad();
+    }
+
+    public void jsClick(){
+        waitUntilPresent();
+        javascriptExecutor.executeScript("arguments[0].click", element);
     }
 
     public void waitForPageToLoad() {
