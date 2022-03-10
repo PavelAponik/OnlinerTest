@@ -13,6 +13,7 @@ public class HomePage extends BasePage {
 
     public void navigateToCategory(String category){
         Button btnCategory = new Button(By.xpath(category), "Каталог");
+        btnCategory.scrollToElement();
         btnCategory.clickAndWait();
 
     }

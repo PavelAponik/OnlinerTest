@@ -3,6 +3,7 @@ package stepsdefenition;
 import Onliner.pageObjects.CataloguePage;
 import Onliner.pageObjects.HomePage;
 import Onliner.pageObjects.TVPage;
+import Onliner.pageObjects.TVResultsPage;
 import framework.base.BaseTest;
 import framework.webdriver.Browser;
 import io.cucumber.java.After;
@@ -17,6 +18,7 @@ public class StepsDefinition extends BaseTest {
     HomePage homePage = new HomePage();
     CataloguePage cataloguePage = new CataloguePage();
     TVPage tvPage = new TVPage();
+    TVResultsPage searchResult = new TVResultsPage();
 
     @Before
     public static void setUp(){
@@ -25,7 +27,7 @@ public class StepsDefinition extends BaseTest {
 
     @After
     public static void tearDown(){
-        //Browser.tearDown();
+        Browser.tearDown();
     }
 
     @Given("^I am on the main page and go to the Catalogue page$")
@@ -42,7 +44,7 @@ public class StepsDefinition extends BaseTest {
 
     @And("^I select brand as (.*)$")
     public void selectBrand(String brand) {
-        tvPage.selectBrand(brand);
+        tvPage.selectCheckbox(brand);
     }
 
     @And("^I set the maximum price as (.*)$")
@@ -52,14 +54,22 @@ public class StepsDefinition extends BaseTest {
 
     @And("^I set the minimum (.*) and maximum (.*) diagonal$")
     public void setMaxAndMinDiagonal(String min, String max) {
+        tvPage.selectCheckbox(min);
+        tvPage.selectCheckbox(max);
     }
 
     @And("^I set the screen resolution as (.*)$")
     public void setScreenResolution(String resolution) {
+        tvPage.selectCheckbox(resolution);
     }
 
     @Then("^I see the list of found items that matches (.*), (.*) and (.*) diagonal, (.*) and (.*)$")
     public void checkSearchResults(String brand, String min, String max, String resolution, String price) {
+        searchResult.checkSearchList(searchResult.titleResult, brand);
+        searchResult.checkSearchList(searchResult.descriptionResult, resolution);
+        searchResult.checkDiagonal(searchResult.descriptionResult, min, max);
+        searchResult.checkPrice(searchResult.priceResult, price);
+
     }
 
 }
