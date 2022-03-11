@@ -8,14 +8,20 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage {
+public abstract class BasePage {
     public WebDriver driver = Browser.driver;
     public WebDriverWait wait;
     public JavascriptExecutor javascriptExecutor;
 
-    public BasePage(By locator, String pageTitle) {
+   public BasePage(By locator, String pageTitle) {
         String title = pageTitle;
         Label lblPage = new Label(locator, pageTitle);
+    }
+
+    public abstract void isRightPageOpened(String title);
+
+    public String getTitle(){
+        return driver.getTitle();
     }
 
     public WebElement waitUntilElementAvailable(final String locator) {

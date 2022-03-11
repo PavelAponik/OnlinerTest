@@ -1,4 +1,4 @@
-package stepsdefenition;
+package Onliner.stepsdefenition;
 
 import Onliner.pageObjects.CataloguePage;
 import Onliner.pageObjects.HomePage;
@@ -13,7 +13,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class StepsDefinition extends BaseTest {
+public class Steps extends BaseTest {
 
     HomePage homePage = new HomePage();
     CataloguePage cataloguePage = new CataloguePage();
@@ -32,18 +32,20 @@ public class StepsDefinition extends BaseTest {
 
     @Given("^I am on the main page and go to the Catalogue page$")
     public void navigateToCatalogue() {
+        homePage.isRightPageOpened("Onliner");
         homePage.navigateToCategory(String.format(HomePage.CATEGORY, "Каталог"));
     }
 
-
     @When("^I select the catalog menu 'Электроника', catalog submenu 'Телевидение и видео' and select 'Телевизоры'$")
     public void selectSubCategoryAndItem() {
+        cataloguePage.isRightPageOpened("Каталог Onlíner");
         cataloguePage.navigateToCatalogueMenu("Электроника", "Телевидение");
         cataloguePage.navigateToDropdownItem("Телевизоры");
     }
 
     @And("^I select brand as (.*)$")
     public void selectBrand(String brand) {
+        tvPage.isRightPageOpened("Телевизор купить в Минске");
         tvPage.selectCheckbox(brand);
     }
 
