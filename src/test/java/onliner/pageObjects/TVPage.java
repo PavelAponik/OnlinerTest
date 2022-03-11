@@ -1,4 +1,4 @@
-package Onliner.pageObjects;
+package onliner.pageObjects;
 
 import framework.base.BasePage;
 import framework.elements.Checkbox;
@@ -18,10 +18,10 @@ public class TVPage extends BasePage {
         super(By.xpath("//div[contains(@class, 'b-top-logo')]"), "TV Page");
     }
 
-    public void selectCheckbox(String brand){
-        Checkbox checkboxBrand = new Checkbox(By.xpath(String.format(CHECKBOX_LOCATOR, brand)), brand);
-        checkboxBrand.scrollToElement();
-        checkboxBrand.clickAndWait();
+    public void selectCheckbox(String checkboxName){
+        Checkbox checkbox = new Checkbox(By.xpath(String.format(CHECKBOX_LOCATOR, checkboxName)), checkboxName);
+        checkbox.scrollToElement();
+        checkbox.clickAndWait();
     }
 
     public void setPrice(String price){

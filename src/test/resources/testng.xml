@@ -2,15 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="OnlinerTest">
-        <parameter name="Brand" value="Samsung"/>
-        <parameter name="MaxPrice" value="1500"/>
-        <parameter name="ScreenResolution" value="1920x1080 (Full HD)"/>
-        <parameter name="ScreenDiagonalMin" value='40"'/>
-        <parameter name="ScreenDiagonalMax" value='50"'/>
         <classes>
-            <class name="Onliner.tests.OnlinerTest">
+            <class name="onliner.tests.TestRunner">
                 <methods>
-                    <include name="TestOnliner"/>
+                    <include name="onliner.tests.TestRunner"/>
                 </methods>
             </class>
         </classes>

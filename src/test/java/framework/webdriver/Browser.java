@@ -15,8 +15,6 @@ public class Browser {
     public static void setUp(){
         driver = browserSetUp();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Integer.parseInt(propertyManager.getProperty(PropertiesManager.configPropertyPath, "implicit_wait")), TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(Integer.parseInt(propertyManager.getProperty(PropertiesManager.configPropertyPath, "implicit_wait")), TimeUnit.SECONDS);
         driver.get(propertyManager.getProperty(PropertiesManager.configPropertyPath, "url"));
     }
 

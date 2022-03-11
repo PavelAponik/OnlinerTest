@@ -1,9 +1,9 @@
-package Onliner.stepsdefenition;
+package onliner.stepsdefenition;
 
-import Onliner.pageObjects.CataloguePage;
-import Onliner.pageObjects.HomePage;
-import Onliner.pageObjects.TVPage;
-import Onliner.pageObjects.TVResultsPage;
+import onliner.pageObjects.CataloguePage;
+import onliner.pageObjects.HomePage;
+import onliner.pageObjects.TVPage;
+import onliner.pageObjects.TVResultsPage;
 import framework.base.BaseTest;
 import framework.webdriver.Browser;
 import io.cucumber.java.After;
@@ -32,7 +32,7 @@ public class Steps extends BaseTest {
 
     @Given("^I am on the main page and go to the Catalogue page$")
     public void navigateToCatalogue() {
-        homePage.isRightPageOpened("Onliner");
+        homePage.isRightPageOpened("onliner");
         homePage.navigateToCategory(String.format(HomePage.CATEGORY, "Каталог"));
     }
 
@@ -55,9 +55,9 @@ public class Steps extends BaseTest {
     }
 
     @And("^I set the minimum (.*) and maximum (.*) diagonal$")
-    public void setMaxAndMinDiagonal(String min, String max) {
-        tvPage.selectCheckbox(min);
-        tvPage.selectCheckbox(max);
+    public void setMaxAndMinDiagonal(String diagonalMin, String diagonalMax) {
+        tvPage.selectCheckbox(diagonalMin);
+        tvPage.selectCheckbox(diagonalMax);
     }
 
     @And("^I set the screen resolution as (.*)$")
@@ -66,12 +66,11 @@ public class Steps extends BaseTest {
     }
 
     @Then("^I see the list of found items that matches (.*), (.*) and (.*) diagonal, (.*) and (.*)$")
-    public void checkSearchResults(String brand, String min, String max, String resolution, String price) {
+    public void checkSearchResults(String brand, String diagonalMin, String diagonalMax, String resolution, String price) {
         searchResult.checkSearchList(searchResult.titleResult, brand);
         searchResult.checkSearchList(searchResult.descriptionResult, resolution);
-        searchResult.checkDiagonal(searchResult.descriptionResult, min, max);
+        searchResult.checkDiagonal(searchResult.descriptionResult, diagonalMin, diagonalMax);
         searchResult.checkPrice(searchResult.priceResult, price);
-
     }
 
 }
