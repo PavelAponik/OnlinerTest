@@ -3,11 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="OnlinerTest">
         <classes>
-            <class name="onliner.tests.TestRunner">
-                <methods>
-                    <include name="onliner.tests.TestRunner"/>
-                </methods>
-            </class>
+            <class name="onliner.tests.TestRunner"/>
         </classes>
     </test>
 </suite>
