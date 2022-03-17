@@ -17,7 +17,6 @@ public class TVResultsPage extends BasePage {
     public List<WebElement> titleResult = driver.findElements(By.xpath("//div[@class='schema-product__title']"));
     public List<WebElement> descriptionResult = driver.findElements(By.xpath("//div[@class='schema-product__description']"));
     public List<WebElement> priceResult = driver.findElements(By.xpath("//a[@class='schema-product__price-value schema-product__price-value_primary']/span"));
-    static SoftAssert softAssert = new SoftAssert();
 
     public void checkSearchList(List<WebElement> searchList, String string){
 
@@ -41,10 +40,5 @@ public class TVResultsPage extends BasePage {
         for (int i = 0; i < searchList.size(); i++){
             Assert.assertTrue(Double.parseDouble(searchList.get(i).getText().replace(" р.", "").replace(',', '.')) <= Double.parseDouble(Price));
         }
-    }
-
-    @Override
-    public void isRightPageOpened(String title) {
-        softAssert.assertEquals(getTitle(),title);
     }
 }
