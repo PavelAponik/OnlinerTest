@@ -32,7 +32,7 @@ public class Steps extends BaseTest {
 
     @Given("^I am on the main page and go to the Catalogue page$")
     public void navigateToCatalogue() {
-        homePage.navigateToCategory(String.format(HomePage.CATEGORY, "Каталог"));
+        homePage.navigateToCategory("Каталог");
     }
 
     @When("^I select the catalog menu 'Электроника', catalog submenu 'Телевидение и видео' and select 'Телевизоры'$")

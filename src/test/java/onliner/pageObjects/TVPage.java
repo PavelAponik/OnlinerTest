@@ -4,7 +4,6 @@ import framework.base.BasePage;
 import framework.elements.Checkbox;
 import framework.elements.TextBox;
 import org.openqa.selenium.By;
-import org.testng.asserts.SoftAssert;
 
 
 public class TVPage extends BasePage {

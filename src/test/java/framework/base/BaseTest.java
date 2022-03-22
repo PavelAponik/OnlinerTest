@@ -10,12 +10,12 @@ public class BaseTest extends Browser {
 
     @BeforeClass
     public void before(){
-        Browser.setUp();
+        setUp();
     }
 
     @AfterClass
     public void after(){
-        Browser.tearDown();
+        tearDown();
     }
 
 }
